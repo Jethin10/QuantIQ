@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary_teal">#00BFA5</color>
+    <color name="primary_teal_dark">#00897B</color>
+    <color name="primary_teal_light">#64FFDA</color>
+
+    <color name="secondary_navy">#007BFF</color>
+    <color name="secondary_navy_dark">#0056B3</color>
+    <color name="secondary_navy_light">#4DA6FF</color>
+
+    <!-- Background Colors -->
+    <color name="background_primary">#FFFFFF</color>
+    <color name="background_secondary">#F5F7FA</color>
+    <color name="background_card">#FFFFFF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+
+    <!-- Status Colors -->
+    <color name="success_green">#4CAF50</color>
+    <color name="success_light">#81C784</color>
+    <color name="error_red">#F44336</color>
+    <color name="error_light">#EF5350</color>
+    <color name="warning_orange">#FF9800</color>
+    <color name="info_blue">#2196F3</color>
+
+    <!-- Chart Colors -->
+    <color name="chart_profit">#00E676</color>
+    <color name="chart_loss">#FF1744</color>
+    <color name="chart_neutral">#9E9E9E</color>
+    <color name="chart_background">#FAFAFA</color>
+
+    <!-- Metric Colors -->
+    <color name="metric_excellent">#00C853</color>
+    <color name="metric_good">#64DD17</color>
+    <color name="metric_fair">#FFD600</color>
+    <color name="metric_poor">#FF6D00</color>
+
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#00BFA5</color>
+    <color name="gradient_end">#007BFF</color>
+
+    <!-- Overlay Colors -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40FFFFFF</color>
+
+    <!-- Divider -->
+    <color name="divider">#E0E0E0</color>
+
+    <!-- Shimmer -->
+    <color name="shimmer_base">#F0F0F0</color>
+    <color name="shimmer_highlight">#FFFFFF</color>
+</resources>
