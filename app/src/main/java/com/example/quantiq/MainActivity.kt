@@ -278,6 +278,25 @@ class MainActivity : AppCompatActivity() {
         etStockTicker.setAdapter(adapter)
         etStockTicker.threshold = 1
 
+        // Add focus animation to the input
+        etStockTicker.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                stockInputLayout.animate()
+                    .scaleX(1.02f)
+                    .scaleY(1.02f)
+                    .setDuration(200)
+                    .setInterpolator(android.view.animation.DecelerateInterpolator())
+                    .start()
+            } else {
+                stockInputLayout.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(200)
+                    .setInterpolator(android.view.animation.DecelerateInterpolator())
+                    .start()
+            }
+        }
+
         etStockTicker.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -285,9 +304,31 @@ class MainActivity : AppCompatActivity() {
                 val companyName = stockSuggestions[ticker]
                 if (companyName != null) {
                     tvStockName.text = companyName
-                    companyNameContainer.visibility = View.VISIBLE
+
+                    // Animate company name container appearing
+                    if (companyNameContainer.visibility != View.VISIBLE) {
+                        companyNameContainer.alpha = 0f
+                        companyNameContainer.translationY = -20f
+                        companyNameContainer.visibility = View.VISIBLE
+                        companyNameContainer.animate()
+                            .alpha(1f)
+                            .translationY(0f)
+                            .setDuration(300)
+                            .setInterpolator(android.view.animation.DecelerateInterpolator())
+                            .start()
+                    }
                 } else {
-                    companyNameContainer.visibility = View.GONE
+                    // Animate company name container disappearing
+                    if (companyNameContainer.visibility == View.VISIBLE) {
+                        companyNameContainer.animate()
+                            .alpha(0f)
+                            .translationY(-20f)
+                            .setDuration(200)
+                            .withEndAction {
+                                companyNameContainer.visibility = View.GONE
+                            }
+                            .start()
+                    }
                 }
             }
 
