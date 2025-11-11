@@ -58,6 +58,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -891,10 +892,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📈 Equity Curve"
+                        android:text="Equity Curve"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
+                        android:fontFamily="sans-serif-medium"
                         android:layout_marginBottom="16dp" />
 
                     <com.github.mikephil.charting.charts.LineChart
@@ -915,10 +917,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📊 Performance Metrics"
-                    android:textSize="18sp"
+                    android:text="Performance Metrics"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="#1E293B"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.02"
                     android:layout_marginBottom="16dp" />
 
                 <!-- QuantScore Card -->
@@ -934,25 +938,28 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:padding="24dp"
+                        android:padding="28dp"
                         android:background="@drawable/gradient_header">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🎯 QuantScore"
-                            android:textSize="16sp"
+                            android:text="QUANT SCORE"
+                            android:textSize="13sp"
                             android:textColor="@android:color/white"
-                            android:alpha="0.9" />
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.15"
+                            android:alpha="0.85" />
 
                         <TextView
                             android:id="@+id/tvQuantScore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="--"
-                            android:textSize="48sp"
+                            android:textSize="56sp"
                             android:textStyle="bold"
                             android:textColor="@android:color/white"
+                            android:fontFamily="sans-serif-light"
                             android:layout_marginVertical="8dp" />
 
                         <TextView
@@ -962,6 +969,8 @@
                             android:text="--"
                             android:textSize="18sp"
                             android:textColor="@android:color/white"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="0.1"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -982,30 +991,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="💰 Total Return"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="TOTAL RETURN"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvTotalReturn"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1016,30 +1029,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="📊 Sharpe Ratio"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="SHARPE RATIO"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvSharpe"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1050,30 +1067,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="📉 Max Drawdown"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="MAX DRAWDOWN"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvDrawdown"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1084,30 +1105,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="📊 Volatility"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="VOLATILITY"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvVolatility"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1118,30 +1143,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="🎯 Win Rate"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="WIN RATE"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvWinRate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1152,30 +1181,34 @@
                         android:layout_columnWeight="1"
                         android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="4dp">
+                        app:cardElevation="4dp"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:padding="16dp">
+                            android:padding="18dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="📈 Total Trades"
-                                android:textSize="13sp"
-                                android:textColor="#64748B" />
+                            <TextView android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="TOTAL TRADES"
+                                    android:textSize="11sp"
+                                    android:textColor="#64748B"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:letterSpacing="0.08" />
 
                             <TextView
                                 android:id="@+id/tvTrades"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="22sp"
+                                android:textSize="26sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="6dp" />
+                                android:fontFamily="sans-serif"
+                                android:layout_marginTop="8dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </GridLayout>
@@ -1287,3 +1320,4 @@
         </com.google.android.material.card.MaterialCardView>
     </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

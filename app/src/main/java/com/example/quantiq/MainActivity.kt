@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.quantiq.data.models.BacktestResult
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var chartCard: MaterialCardView
     private lateinit var equityChart: LineChart
     private lateinit var metricsContainer: LinearLayout
+    private lateinit var scrollView: NestedScrollView
     private lateinit var quantScoreCard: MaterialCardView
     private lateinit var tvQuantScore: TextView
     private lateinit var tvQuantRating: TextView
@@ -232,6 +234,7 @@ class MainActivity : AppCompatActivity() {
         chartCard = findViewById(R.id.chartCard)
         equityChart = findViewById(R.id.equityChart)
         metricsContainer = findViewById(R.id.metricsContainer)
+        scrollView = findViewById(R.id.scrollView)
         quantScoreCard = findViewById(R.id.quantScoreCard)
         tvQuantScore = findViewById(R.id.tvQuantScore)
         tvQuantRating = findViewById(R.id.tvQuantRating)
@@ -907,10 +910,10 @@ class MainActivity : AppCompatActivity() {
         // Update QuantScore with animation
         tvQuantScore.text = String.format("%.0f", result.quantScore)
         val rating = when {
-            result.quantScore >= 80 -> "EXCELLENT "
-            result.quantScore >= 60 -> "GOOD "
-            result.quantScore >= 40 -> "FAIR "
-            else -> "POOR "
+            result.quantScore >= 80 -> "EXCELLENT"
+            result.quantScore >= 60 -> "GOOD"
+            result.quantScore >= 40 -> "FAIR"
+            else -> "POOR"
         }
         tvQuantRating.text = rating
 
@@ -938,7 +941,10 @@ class MainActivity : AppCompatActivity() {
         // Draw chart with animation
         drawEquityCurve(result.equityCurve)
 
-        // Don't auto-generate AI insights - only show when user clicks on a metric card
+        // Smooth scroll to metrics section after a short delay
+        scrollView.post {
+            scrollView.smoothScrollTo(0, metricsContainer.top - 50, 800)
+        }
     }
 
     private fun getReturnColor(returnValue: Double): Int {
