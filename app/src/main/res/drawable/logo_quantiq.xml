@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Background Circle -->
+    <path
+        android:fillColor="#00796B"
+        android:pathData="M100,20 A80,80 0 1,1 100,180 A80,80 0 1,1 100,20" />
+
+    <!-- Inner Gradient Circle -->
+    <path
+        android:fillColor="#00BFA5"
+        android:pathData="M100,30 A70,70 0 1,1 100,170 A70,70 0 1,1 100,30" />
+
+    <!-- Q Letter -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M100,60 A40,40 0 1,0 100,140 A40,40 0 1,0 100,60 M100,75 A25,25 0 1,1 100,125 A25,25 0 1,1 100,75" />
+
+    <!-- Q Tail -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M115,125 L135,145 L125,155 L105,135 Z" />
+
+    <!-- Circuit Lines (Tech feel) -->
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2"
+        android:strokeAlpha="0.3"
+        android:pathData="M50,100 L70,100 M130,100 L150,100 M100,50 L100,70 M100,130 L100,150" />
+
+    <!-- Small Dots (Data points) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.6"
+        android:pathData="M50,100 A3,3 0 1,1 50,100.1 M150,100 A3,3 0 1,1 150,100.1 M100,50 A3,3 0 1,1 100,50.1 M100,150 A3,3 0 1,1 100,150.1" />
+
+</vector>

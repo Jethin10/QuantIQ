@@ -15,31 +15,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Logo Icon -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⚡"
-            android:textSize="120sp"
-            android:layout_marginBottom="16dp" />
+        <!-- Brain Logo Icon -->
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:src="@drawable/logo_quantiq"
+            android:contentDescription="QuantIQ Logo"
+            android:layout_marginBottom="24dp" />
 
-        <!-- App Name -->
-        <TextView
+        <!-- App Name with Animated Letters -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QuantIQ"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp" />
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/tvQuant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QUANT"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="#E0E0E0"
+                android:fontFamily="sans-serif-condensed" />
+
+            <TextView
+                android:id="@+id/tvI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="#00BFA5"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_marginStart="4dp" />
+
+            <TextView
+                android:id="@+id/tvQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Q"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="#00BFA5"
+                android:fontFamily="sans-serif-condensed" />
+        </LinearLayout>
 
         <!-- Tagline -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="AI-Powered Backtesting"
-            android:textSize="18sp"
-            android:textColor="#E0E0E0"
+            android:textSize="16sp"
+            android:textColor="#B0E0E0"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.1"
             android:layout_marginBottom="32dp" />
 
         <!-- Loading Indicator -->
@@ -63,9 +96,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="v1.0 • Powered by RunAnywhere SDK"
+        android:text="v1.0 • Powered by AI"
         android:textSize="12sp"
-        android:textColor="#B0B0B0"
+        android:textColor="#90FFFFFF"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
