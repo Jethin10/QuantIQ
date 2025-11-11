@@ -251,48 +251,94 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📊 Trading Strategy"
+                        android:text="Trading Strategy"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="16dp" />
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="20dp" />
 
-                    <RadioGroup
-                        android:id="@+id/radioGroupStrategy"
+                    <!-- Strategy Chips -->
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroupStrategy"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        app:singleSelection="true"
+                        app:selectionRequired="true"
+                        app:chipSpacingHorizontal="12dp"
+                        app:chipSpacingVertical="12dp">
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/radioSMA"
-                            android:layout_width="match_parent"
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipSMA"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SMA Crossover"
                             android:checked="true"
-                            android:paddingVertical="12dp" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_sort_by_size"
+                            app:chipIconTint="@color/chip_text" />
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/radioRSI"
-                            android:layout_width="match_parent"
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipRSI"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="RSI Strategy"
-                            android:paddingVertical="12dp" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_sort_by_size"
+                            app:chipIconTint="@color/chip_text" />
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/radioMACD"
-                            android:layout_width="match_parent"
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipMACD"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="MACD Strategy"
-                            android:paddingVertical="12dp" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_sort_by_size"
+                            app:chipIconTint="@color/chip_text" />
 
-                        <com.google.android.material.radiobutton.MaterialRadioButton
-                            android:id="@+id/radioMeanReversion"
-                            android:layout_width="match_parent"
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipMeanReversion"
+                            style="@style/Widget.Material3.Chip.Filter"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Mean Reversion"
-                            android:paddingVertical="12dp" />
-                    </RadioGroup>
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_sort_by_size"
+                            app:chipIconTint="@color/chip_text" />
+                    </com.google.android.material.chip.ChipGroup>
 
-                    <!-- Strategy Customization Section -->
+                    <!-- Strategy Customization Section - Will animate in/out -->
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/customizationCard"
                         android:layout_width="match_parent"
@@ -314,9 +360,10 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="⚙️ Customize Parameters"
+                                android:text="Parameters"
                                 android:textStyle="bold"
                                 android:textColor="#475569"
+                                android:fontFamily="sans-serif-medium"
                                 android:layout_marginBottom="12dp" />
 
                             <!-- SMA Parameters -->
@@ -737,11 +784,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="📅 Backtest Period"
+                        android:text="Backtest Period"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="16dp" />
+                        android:fontFamily="sans-serif-medium"
+                        android:layout_marginBottom="20dp" />
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupTimeframe"
@@ -749,8 +797,8 @@
                         android:layout_height="wrap_content"
                         app:singleSelection="true"
                         app:selectionRequired="true"
-                        app:chipSpacingHorizontal="8dp"
-                        app:chipSpacingVertical="8dp">
+                        app:chipSpacingHorizontal="12dp"
+                        app:chipSpacingVertical="12dp">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip30Days"
@@ -758,12 +806,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="30 Days"
-                            app:chipCornerRadius="8dp"
-                            app:chipSurfaceColor="#FFFFFF"
-                            app:chipStrokeColor="#E2E8F0"
-                            app:chipStrokeWidth="1dp"
-                            android:textColor="#475569"
-                            app:checkedIconVisible="false" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_recent_history"
+                            app:chipIconTint="@color/chip_text" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip90Days"
@@ -772,12 +824,16 @@
                             android:layout_height="wrap_content"
                             android:text="90 Days"
                             android:checked="true"
-                            app:chipCornerRadius="8dp"
-                            app:chipSurfaceColor="#FFFFFF"
-                            app:chipStrokeColor="#00897B"
-                            app:chipStrokeWidth="1dp"
-                            android:textColor="#00897B"
-                            app:checkedIconVisible="false" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_recent_history"
+                            app:chipIconTint="@color/chip_text" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip180Days"
@@ -785,12 +841,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="180 Days"
-                            app:chipCornerRadius="8dp"
-                            app:chipSurfaceColor="#FFFFFF"
-                            app:chipStrokeColor="#E2E8F0"
-                            app:chipStrokeWidth="1dp"
-                            android:textColor="#475569"
-                            app:checkedIconVisible="false" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_recent_history"
+                            app:chipIconTint="@color/chip_text" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip365Days"
@@ -798,12 +858,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1 Year"
-                            app:chipCornerRadius="8dp"
-                            app:chipSurfaceColor="#FFFFFF"
-                            app:chipStrokeColor="#E2E8F0"
-                            app:chipStrokeWidth="1dp"
-                            android:textColor="#475569"
-                            app:checkedIconVisible="false" />
+                            app:chipCornerRadius="12dp"
+                            app:chipBackgroundColor="@color/chip_background"
+                            app:chipStrokeColor="@color/chip_stroke"
+                            app:chipStrokeWidth="2dp"
+                            android:textColor="@color/chip_text"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            app:checkedIconVisible="true"
+                            app:checkedIcon="@android:drawable/ic_menu_recent_history"
+                            app:chipIconTint="@color/chip_text" />
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

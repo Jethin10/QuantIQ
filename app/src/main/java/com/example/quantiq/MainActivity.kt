@@ -23,11 +23,11 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.slider.Slider
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputLayout
 import com.runanywhere.sdk.public.RunAnywhere
 import com.runanywhere.sdk.data.models.SDKEnvironment
@@ -41,14 +41,14 @@ class MainActivity : AppCompatActivity() {
 
     // UI Elements
     private lateinit var stockInputLayout: TextInputLayout
-    private lateinit var etStockTicker: AutoCompleteTextView
+    private lateinit var etStockTicker: MaterialAutoCompleteTextView
     private lateinit var tvStockName: TextView
     private lateinit var companyNameContainer: View
-    private lateinit var radioGroupStrategy: RadioGroup
-    private lateinit var radioSMA: MaterialRadioButton
-    private lateinit var radioRSI: MaterialRadioButton
-    private lateinit var radioMACD: MaterialRadioButton
-    private lateinit var radioMeanReversion: MaterialRadioButton
+    private lateinit var chipGroupStrategy: ChipGroup
+    private lateinit var chipSMA: Chip
+    private lateinit var chipRSI: Chip
+    private lateinit var chipMACD: Chip
+    private lateinit var chipMeanReversion: Chip
 
     // Strategy Parameters
     private lateinit var smaParams: LinearLayout
@@ -81,13 +81,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvMeanReversionPeriod: TextView
 
     private lateinit var chipGroupTimeframe: ChipGroup
-    private lateinit var fabRunBacktest: com.google.android.material.button.MaterialButton
+    private lateinit var fabRunBacktest: MaterialButton
     private lateinit var progressOverlay: FrameLayout
     private lateinit var tvProgressText: TextView
     private lateinit var tvModelStatus: TextView
     private lateinit var tvModelDetails: TextView
     private lateinit var modelStatusBanner: MaterialCardView
-    private lateinit var btnDownloadModel: com.google.android.material.button.MaterialButton
+    private lateinit var btnDownloadModel: MaterialButton
     private lateinit var btnChat: ImageButton
     private lateinit var btnSettings: ImageButton
 
@@ -178,11 +178,11 @@ class MainActivity : AppCompatActivity() {
         companyNameContainer = findViewById(R.id.companyNameContainer)
 
         // Strategy selection
-        radioGroupStrategy = findViewById(R.id.radioGroupStrategy)
-        radioSMA = findViewById(R.id.radioSMA)
-        radioRSI = findViewById(R.id.radioRSI)
-        radioMACD = findViewById(R.id.radioMACD)
-        radioMeanReversion = findViewById(R.id.radioMeanReversion)
+        chipGroupStrategy = findViewById(R.id.chipGroupStrategy)
+        chipSMA = findViewById(R.id.chipSMA)
+        chipRSI = findViewById(R.id.chipRSI)
+        chipMACD = findViewById(R.id.chipMACD)
+        chipMeanReversion = findViewById(R.id.chipMeanReversion)
 
         // Strategy parameters
         smaParams = findViewById(R.id.smaParams)
@@ -438,38 +438,93 @@ class MainActivity : AppCompatActivity() {
             tvMeanReversionPeriod.text = value.toInt().toString()
         }
 
-        // Show/hide parameters based on strategy
-        radioGroupStrategy.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.radioSMA -> {
-                    smaParams.visibility = View.VISIBLE
-                    rsiParams.visibility = View.GONE
-                    macdParams.visibility = View.GONE
-                    meanReversionParams.visibility = View.GONE
-                }
+        // Show/hide parameters based on strategy with smooth animations
+        chipGroupStrategy.setOnCheckedStateChangeListener { group, checkedIds ->
+            if (checkedIds.isEmpty()) return@setOnCheckedStateChangeListener
 
-                R.id.radioRSI -> {
-                    smaParams.visibility = View.GONE
-                    rsiParams.visibility = View.VISIBLE
-                    macdParams.visibility = View.GONE
-                    meanReversionParams.visibility = View.GONE
-                }
+            val checkedId = checkedIds[0]
 
-                R.id.radioMACD -> {
-                    smaParams.visibility = View.GONE
-                    rsiParams.visibility = View.GONE
-                    macdParams.visibility = View.VISIBLE
-                    meanReversionParams.visibility = View.GONE
-                }
+            // Fade out current params
+            val currentVisible = when {
+                smaParams.visibility == View.VISIBLE -> smaParams
+                rsiParams.visibility == View.VISIBLE -> rsiParams
+                macdParams.visibility == View.VISIBLE -> macdParams
+                meanReversionParams.visibility == View.VISIBLE -> meanReversionParams
+                else -> null
+            }
 
-                else -> {
-                    smaParams.visibility = View.GONE
-                    rsiParams.visibility = View.GONE
-                    macdParams.visibility = View.GONE
-                    meanReversionParams.visibility = View.VISIBLE
+            val targetParams = when (checkedId) {
+                R.id.chipSMA -> smaParams
+                R.id.chipRSI -> rsiParams
+                R.id.chipMACD -> macdParams
+                R.id.chipMeanReversion -> meanReversionParams
+                else -> smaParams
+            }
+
+            if (currentVisible == targetParams) return@setOnCheckedStateChangeListener
+
+            // Animate out current
+            currentVisible?.animate()
+                ?.alpha(0f)
+                ?.translationX(-30f)
+                ?.setDuration(200)
+                ?.withEndAction {
+                    currentVisible.visibility = View.GONE
+                    currentVisible.translationX = 0f
+
+                    // Animate in new
+                    targetParams.alpha = 0f
+                    targetParams.translationX = 30f
+                    targetParams.visibility = View.VISIBLE
+                    targetParams.animate()
+                        .alpha(1f)
+                        .translationX(0f)
+                        .setDuration(300)
+                        .setInterpolator(android.view.animation.DecelerateInterpolator())
+                        .start()
                 }
+                ?.start()
+        }
+
+        // Add press animation to chips
+        val chipPressAnimation: (Chip) -> Unit = { chip ->
+            chip.setOnTouchListener { view, event ->
+                when (event.action) {
+                    android.view.MotionEvent.ACTION_DOWN -> {
+                        view.animate()
+                            .scaleX(0.95f)
+                            .scaleY(0.95f)
+                            .setDuration(100)
+                            .start()
+                    }
+
+                    android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                        view.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(100)
+                            .start()
+                    }
+                }
+                false
             }
         }
+
+        chipPressAnimation(chipSMA)
+        chipPressAnimation(chipRSI)
+        chipPressAnimation(chipMACD)
+        chipPressAnimation(chipMeanReversion)
+
+        // Add press animation to timeframe chips too
+        val chip30 = findViewById<Chip>(R.id.chip30Days)
+        val chip90 = findViewById<Chip>(R.id.chip90Days)
+        val chip180 = findViewById<Chip>(R.id.chip180Days)
+        val chip365 = findViewById<Chip>(R.id.chip365Days)
+
+        chipPressAnimation(chip30)
+        chipPressAnimation(chip90)
+        chipPressAnimation(chip180)
+        chipPressAnimation(chip365)
     }
 
     private fun initializeSDK() {
@@ -721,8 +776,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSelectedStrategy(): StrategyConfig {
-        return when (radioGroupStrategy.checkedRadioButtonId) {
-            R.id.radioSMA -> {
+        return when (chipGroupStrategy.checkedChipId) {
+            R.id.chipSMA -> {
                 val shortPeriod = sliderSmaShort.value.toInt()
                 val longPeriod = sliderSmaLong.value.toInt()
                 StrategyConfig(
@@ -736,7 +791,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            R.id.radioRSI -> {
+            R.id.chipRSI -> {
                 val period = sliderRsiPeriod.value.toInt()
                 val overbought = sliderRsiOverbought.value.toInt()
                 val oversold = sliderRsiOversold.value.toInt()
@@ -752,7 +807,7 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            R.id.radioMACD -> {
+            R.id.chipMACD -> {
                 val fast = sliderMacdFast.value.toInt()
                 val slow = sliderMacdSlow.value.toInt()
                 val signal = sliderMacdSignal.value.toInt()
