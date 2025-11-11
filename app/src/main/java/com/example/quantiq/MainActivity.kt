@@ -14,6 +14,7 @@ import com.example.quantiq.data.models.BacktestResult
 import com.example.quantiq.data.models.StrategyConfig
 import com.example.quantiq.data.models.StrategyParameters
 import com.example.quantiq.data.models.StrategyType
+import com.example.quantiq.data.models.Trade
 import com.example.quantiq.presentation.BacktestUiState
 import com.example.quantiq.presentation.BacktestViewModel
 import com.example.quantiq.ui.AnimationHelper
@@ -23,6 +24,7 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.ScatterDataSet
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -610,6 +612,27 @@ class MainActivity : AppCompatActivity() {
             runBacktest()
         }
 
+        // Compare strategies button (add functionality for future button)
+        // Note: Button will be added to layout later
+        // Uncomment when button is added to activity_main.xml:
+        /*
+        findViewById<MaterialButton>(R.id.btnCompareStrategies)?.setOnClickListener {
+            val ticker = etStockTicker.text.toString().uppercase().trim()
+            if (ticker.isEmpty()) {
+                Toast.makeText(this, "Please enter a stock ticker", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            val days = getSelectedTimeframe()
+            
+            val intent = android.content.Intent(this, StrategyComparisonActivity::class.java).apply {
+                putExtra("ticker", ticker)
+                putExtra("days", days)
+            }
+            startActivity(intent)
+        }
+        */
+
         btnChat = findViewById(R.id.btnChat)
         btnSettings = findViewById(R.id.btnSettings)
 
@@ -928,6 +951,9 @@ class MainActivity : AppCompatActivity() {
             .setInterpolator(android.view.animation.OvershootInterpolator(1.5f))
             .start()
 
+        // Display buy-and-hold benchmark comparison
+        BenchmarkHelper.displayBenchmarkComparison(metricsContainer, result, layoutInflater)
+
         // Update metrics with colors
         tvTotalReturn.text = FormatUtils.formatReturn(result.totalReturn)
         tvTotalReturn.setTextColor(getReturnColor(result.totalReturn))
@@ -939,7 +965,7 @@ class MainActivity : AppCompatActivity() {
         tvTrades.text = result.totalTrades.toString()
 
         // Draw chart with animation
-        drawEquityCurve(result.equityCurve)
+        drawEquityCurve(result.equityCurve, result.trades)
 
         // Smooth scroll to metrics section after a short delay
         scrollView.post {
@@ -951,7 +977,7 @@ class MainActivity : AppCompatActivity() {
         return if (returnValue >= 0) Color.parseColor("#00C851") else Color.parseColor("#FF4444")
     }
 
-    private fun drawEquityCurve(equityCurve: List<Double>) {
+    private fun drawEquityCurve(equityCurve: List<Double>, trades: List<Trade> = emptyList()) {
         val entries = equityCurve.mapIndexed { index, value ->
             Entry(index.toFloat(), value.toFloat())
         }
