@@ -26,19 +26,19 @@ AI assistant  by integrating the Runanywhere sdk.
 
 ### **The Problem We Solve**
 
-- 📊 **Retail traders lack access** to professional backtesting tools
-- 💻 **Desktop-only solutions** aren't accessible on-the-go
-- 🔒 **Cloud-based AI** compromises privacy and requires constant internet
-- 🤔 **Complex metrics** confuse beginners without explanations
-- ⏰ **Time-consuming** to test multiple strategies manually
+-  **Retail traders lack access** to professional backtesting tools
+-  **Desktop-only solutions** aren't accessible on-the-go
+-  **Cloud-based AI** compromises privacy and requires constant internet
+-  **Complex metrics** confuse beginners without explanations
+-  **Time-consuming** to test multiple strategies manually
 
 ### **Our Solution**
 
-- 📱 **Mobile-native** - Backtest anywhere, anytime
-- 🧠 **On-device AI** - Privacy-first with SmolLM2 (360M parameters)
-- 🎯 **QuantScore™** - Proprietary algorithm simplifies strategy evaluation
-- ⚡ **Parallel execution** - Test all strategies simultaneously
-- 📊 **Benchmark comparison** - Instantly see if strategy beats buy-and-hold
+-  **Mobile-native** - Backtest anywhere, anytime
+-  **On-device AI** - Privacy-first with SmolLM2 (360M parameters)
+-  **QuantScore™** - Proprietary algorithm simplifies strategy evaluation
+-  **Parallel execution** - Test all strategies simultaneously
+-  **Benchmark comparison** - Instantly see if strategy beats buy-and-hold
 
 ---
 
@@ -229,14 +229,7 @@ QuantScore = (0.35 × Return Score) +
 
 ## 🌟 **Screenshots**
 
-![Loading Page](https://github.com/user-attachments/assets/1b42f86c-69fa-4f9d-bb82-54127d56e26a)
-![Selecting Stocks and Parameters](https://github.com/user-attachments/assets/9895908e-a307-4367-8825-0991b91a906b)
-![Selecting Strategies](https://github.com/user-attachments/assets/7158447b-3c18-441b-ade0-338bef1c9f97)
-![Quant Score](https://github.com/user-attachments/assets/17b50bd2-9fe3-498e-b421-0a62cef30d9d)
-![Performance metrics and valuation graph](https://github.com/user-attachments/assets/0510f74c-c920-4a76-a867-2cb5a0cf9e53)
-![QuantIQ Ai](https://github.com/user-attachments/assets/c379b6f0-2377-4ce7-9052-c59c4c32232f)
-![Selecting stock and parameters](https://github.com/user-attachments/assets/5ab4df02-f2e1-4f9c-b11f-70255923919f)
-![Backtesting Settings](https://github.com/user-attachments/assets/367b5bee-52c6-4df2-bdeb-528b300201d5)
+<table><tr><td><img src="https://github.com/user-attachments/assets/367b5bee-52c6-4df2-bdeb-528b300201d5" alt="Backtesting Settings" width="400"/></td><td><img src="https://github.com/user-attachments/assets/5ab4df02-f2e1-4f9c-b11f-70255923919f" alt="Selecting stock and parameters" width="400"/></td></tr><tr><td><img src="https://github.com/user-attachments/assets/c379b6f0-2377-4ce7-9052-c59c4c32232f" alt="QuantIQ Ai" width="400"/></td><td><img src="https://github.com/user-attachments/assets/0510f74c-c920-4a76-a867-2cb5a0cf9e53" alt="Performance metrics and valuation graph" width="400"/></td></tr><tr><td><img src="https://github.com/user-attachments/assets/17b50bd2-9fe3-498e-b421-0a62cef30d9d" alt="Quant Score" width="400"/></td><td><img src="https://github.com/user-attachments/assets/7158447b-3c18-441b-ade0-338bef1c9f97" alt="Selecting Strategies" width="400"/></td></tr><tr><td><img src="https://github.com/user-attachments/assets/9895908e-a307-4367-8825-0991b91a906b" alt="Selecting Stocks and Parameters" width="400"/></td><td><img src="https://github.com/user-attachments/assets/1b42f86c-69fa-4f9d-bb82-54127d56e26a" alt="Loading Page" width="400"/></td></tr></table>
 
 
 ---
