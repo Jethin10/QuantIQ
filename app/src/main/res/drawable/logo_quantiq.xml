@@ -5,37 +5,37 @@
     android:viewportWidth="200"
     android:viewportHeight="200">
 
-    <!-- Background Circle -->
+    <!-- Outer Circle Background -->
     <path
-        android:fillColor="#00796B"
-        android:pathData="M100,20 A80,80 0 1,1 100,180 A80,80 0 1,1 100,20" />
+        android:fillColor="#00897B"
+        android:pathData="M100,20 C144.18,20 180,55.82 180,100 C180,144.18 144.18,180 100,180 C55.82,180 20,144.18 20,100 C20,55.82 55.82,20 100,20 Z" />
 
-    <!-- Inner Gradient Circle -->
+    <!-- Inner Teal Circle -->
     <path
         android:fillColor="#00BFA5"
-        android:pathData="M100,30 A70,70 0 1,1 100,170 A70,70 0 1,1 100,30" />
+        android:pathData="M100,30 C138.66,30 170,61.34 170,100 C170,138.66 138.66,170 100,170 C61.34,170 30,138.66 30,100 C30,61.34 61.34,30 100,30 Z" />
 
-    <!-- Q Letter -->
+    <!-- Large Q Letter -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M100,60 A40,40 0 1,0 100,140 A40,40 0 1,0 100,60 M100,75 A25,25 0 1,1 100,125 A25,25 0 1,1 100,75" />
+        android:pathData="M100,55 C77.91,55 60,72.91 60,95 C60,117.09 77.91,135 100,135 C122.09,135 140,117.09 140,95 C140,72.91 122.09,55 100,55 Z M100,65 C116.57,65 130,78.43 130,95 C130,111.57 116.57,125 100,125 C83.43,125 70,111.57 70,95 C70,78.43 83.43,65 100,65 Z" />
 
     <!-- Q Tail -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M115,125 L135,145 L125,155 L105,135 Z" />
+        android:pathData="M115,120 L135,140 L125,150 L105,130 Z" />
 
-    <!-- Circuit Lines (Tech feel) -->
+    <!-- Tech Circuit Lines (subtle) -->
     <path
         android:strokeColor="#FFFFFF"
-        android:strokeWidth="2"
-        android:strokeAlpha="0.3"
-        android:pathData="M50,100 L70,100 M130,100 L150,100 M100,50 L100,70 M100,130 L100,150" />
+        android:strokeWidth="1.5"
+        android:strokeAlpha="0.25"
+        android:pathData="M60,100 L45,100 M140,100 L155,100 M100,60 L100,45 M100,140 L100,155" />
 
-    <!-- Small Dots (Data points) -->
+    <!-- Small Connection Dots -->
     <path
         android:fillColor="#FFFFFF"
-        android:fillAlpha="0.6"
-        android:pathData="M50,100 A3,3 0 1,1 50,100.1 M150,100 A3,3 0 1,1 150,100.1 M100,50 A3,3 0 1,1 100,50.1 M100,150 A3,3 0 1,1 100,150.1" />
+        android:fillAlpha="0.4"
+        android:pathData="M45,100 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 M155,100 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 M100,45 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 M100,155 m-2.5,0 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0" />
 
 </vector>
