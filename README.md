@@ -448,7 +448,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Created with ❤️ for [Tech Jam 2.0 & Runanywhere] by [Quantum Loop]
 
-**Developer:** [Jethin]  
+**Developer:** Jethin  
 **GitHub:** [@YourGitHubUsername](https://github.com/Jethin10)  
 **Repository:
 ** [https://github.com/YourGitHubUsername/QuantIQ](https://github.com/YourGitHubUsername/QuantIQ)
@@ -471,7 +471,7 @@ Questions? Feedback? Reach out:
 
 - **GitHub Issues
   **: [Report bugs or suggest features](https://github.com/Jethin10/QuantIQ/issues)
-- **Email**: [jethinkosaraju10@gmail.com]
+- **Email**: jethinkosaraju10@gmail.com
 
 ---
 
