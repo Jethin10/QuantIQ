@@ -693,10 +693,7 @@ class MainActivity : AppCompatActivity() {
         // Draw chart
         drawEquityCurve(result.equityCurve)
 
-        // Auto-generate AI insights if model is loaded
-        if (isModelLoaded) {
-            generateAIInsights(result)
-        }
+        // Don't auto-generate AI insights - only show when user clicks on a metric card
     }
 
     private fun getReturnColor(returnValue: Double): Int {
@@ -787,34 +784,6 @@ class MainActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 tvAiInsights.text = "Error: ${e.message}"
-            }
-        }
-    }
-
-    private fun generateAIInsights(result: BacktestResult) {
-        lifecycleScope.launch {
-            aiInsightsCard.visibility = View.VISIBLE
-            tvAiInsights.text = "AI is analyzing your backtest..."
-
-            // Simple, direct prompt
-            val prompt = """Analyze this backtest result in 3 sentences:
-${result.ticker} with ${result.strategy}
-Returns: ${String.format("%.1f%%", result.totalReturn)}, Sharpe: ${
-                String.format(
-                    "%.2f",
-                    result.sharpeRatio
-                )
-            }, Drawdown: ${String.format("%.1f%%", result.maxDrawdown)}
-Is this strategy good? Why or why not?"""
-
-            var response = ""
-            try {
-                RunAnywhere.generateStream(prompt).collect { token ->
-                    response += token
-                    tvAiInsights.text = response
-                }
-            } catch (e: Exception) {
-                tvAiInsights.text = "AI insights unavailable: ${e.message}"
             }
         }
     }

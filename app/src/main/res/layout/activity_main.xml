@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F7FA"
+    android:background="#E0E0E0"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="@drawable/gradient_header">
+        android:background="@drawable/gradient_header"
+        app:elevation="8dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
@@ -23,7 +24,7 @@
             app:titleTextAppearance="@style/ToolbarTitle"
             app:subtitle="AI-Powered Backtesting"
             app:subtitleTextColor="#E0E0E0"
-            android:elevation="4dp">
+            android:elevation="8dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -31,7 +32,7 @@
                 android:layout_gravity="end"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:paddingEnd="8dp"
+                android:paddingEnd="16dp"
                 tools:ignore="RtlSymmetry">
 
                 <ImageButton
@@ -71,16 +72,16 @@
                 android:id="@+id/modelStatusBanner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp"
-                app:cardBackgroundColor="#E8F5E9"
-                android:layout_marginBottom="16dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp"
+                    android:padding="20dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -88,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:text="🤖"
                         android:textSize="28sp"
-                        android:layout_marginEnd="12dp" />
+                        android:layout_marginEnd="16dp" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -101,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="AI Model: Ready ✓"
-                            android:textSize="16sp"
+                            android:textSize="17sp"
                             android:textStyle="bold"
                             android:textColor="#2E7D32" />
 
@@ -110,9 +111,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SmolLM2 360M loaded"
-                            android:textSize="12sp"
+                            android:textSize="13sp"
                             android:textColor="#558B2F"
-                            android:layout_marginTop="2dp" />
+                            android:layout_marginTop="4dp" />
                     </LinearLayout>
 
                     <com.google.android.material.button.MaterialButton
@@ -132,17 +133,17 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="10dp"
                 app:strokeWidth="0dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="24dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@drawable/gradient_header"
-                    android:padding="32dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -167,9 +168,11 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="16dp"
+                        app:cardCornerRadius="12dp"
                         app:cardElevation="0dp"
-                        app:cardBackgroundColor="@android:color/white">
+                        app:cardBackgroundColor="@android:color/white"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -183,12 +186,12 @@
                                 android:layout_height="wrap_content"
                                 android:hint="AAPL, GOOGL, TSLA..."
                                 app:startIconDrawable="@android:drawable/ic_search_category_default"
-                                app:startIconTint="#00BFA5"
+                                app:startIconTint="#00897B"
                                 app:endIconMode="clear_text"
-                                app:endIconTint="#00BFA5"
+                                app:endIconTint="#00897B"
                                 app:boxStrokeWidth="0dp"
                                 app:boxStrokeWidthFocused="0dp"
-                                app:hintTextColor="#00BFA5"
+                                app:hintTextColor="#00897B"
                                 app:boxBackgroundColor="@android:color/white">
 
                                 <AutoCompleteTextView
@@ -213,14 +216,14 @@
                                 android:paddingTop="12dp"
                                 android:gravity="center_vertical"
                                 android:visibility="gone"
-                                android:background="#F8FAFC">
+                                android:background="#FFFFFF">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="✓"
                                     android:textSize="24sp"
-                                    android:textColor="#00BFA5"
+                                    android:textColor="#00897B"
                                     android:textStyle="bold"
                                     android:layout_marginEnd="12dp" />
 
@@ -244,7 +247,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="Valid ticker • Ready to backtest"
                                         android:textSize="13sp"
-                                        android:textColor="#00BFA5"
+                                        android:textColor="#00897B"
                                         android:layout_marginTop="4dp" />
                                 </LinearLayout>
 
@@ -264,14 +267,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="16dp">
+                app:cardElevation="6dp"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -280,7 +283,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="16dp" />
 
                     <RadioGroup
                         android:id="@+id/radioGroupStrategy"
@@ -293,28 +296,28 @@
                             android:layout_height="wrap_content"
                             android:text="SMA Crossover"
                             android:checked="true"
-                            android:paddingVertical="8dp" />
+                            android:paddingVertical="12dp" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/radioRSI"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="RSI Strategy"
-                            android:paddingVertical="8dp" />
+                            android:paddingVertical="12dp" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/radioMACD"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="MACD Strategy"
-                            android:paddingVertical="8dp" />
+                            android:paddingVertical="12dp" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/radioMeanReversion"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Mean Reversion"
-                            android:paddingVertical="8dp" />
+                            android:paddingVertical="12dp" />
                     </RadioGroup>
 
                     <!-- Strategy Customization Section -->
@@ -326,7 +329,8 @@
                         app:cardBackgroundColor="#F8FAFC"
                         app:strokeWidth="1dp"
                         app:strokeColor="#E2E8F0"
-                        android:layout_marginTop="16dp"
+                        app:cardElevation="2dp"
+                        android:layout_marginTop="20dp"
                         android:visibility="visible">
 
                         <LinearLayout
@@ -372,7 +376,9 @@
                                         android:valueTo="50"
                                         android:value="20"
                                         android:stepSize="1"
-                                        app:labelBehavior="withinBounds" />
+                                        app:labelBehavior="withinBounds"
+                                        app:thumbColor="#00897B"
+                                        app:trackColorActive="#00897B" />
 
                                     <TextView
                                         android:id="@+id/tvSmaShort"
@@ -380,7 +386,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="20"
                                         android:textStyle="bold"
-                                        android:textColor="#00BFA5"
+                                        android:textColor="#00897B"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -407,7 +413,9 @@
                                         android:valueTo="200"
                                         android:value="50"
                                         android:stepSize="5"
-                                        app:labelBehavior="withinBounds" />
+                                        app:labelBehavior="withinBounds"
+                                        app:thumbColor="#0069C0"
+                                        app:trackColorActive="#0069C0" />
 
                                     <TextView
                                         android:id="@+id/tvSmaLong"
@@ -415,7 +423,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="50"
                                         android:textStyle="bold"
-                                        android:textColor="#007BFF"
+                                        android:textColor="#0069C0"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -450,7 +458,9 @@
                                         android:valueTo="30"
                                         android:value="14"
                                         android:stepSize="1"
-                                        app:labelBehavior="withinBounds" />
+                                        app:labelBehavior="withinBounds"
+                                        app:thumbColor="#00897B"
+                                        app:trackColorActive="#00897B" />
 
                                     <TextView
                                         android:id="@+id/tvRsiPeriod"
@@ -458,7 +468,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="14"
                                         android:textStyle="bold"
-                                        android:textColor="#00BFA5"
+                                        android:textColor="#00897B"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -485,7 +495,9 @@
                                         android:valueTo="90"
                                         android:value="70"
                                         android:stepSize="1"
-                                        app:labelBehavior="withinBounds" />
+                                        app:labelBehavior="withinBounds"
+                                        app:thumbColor="#D32F2F"
+                                        app:trackColorActive="#D32F2F" />
 
                                     <TextView
                                         android:id="@+id/tvRsiOverbought"
@@ -493,7 +505,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="70"
                                         android:textStyle="bold"
-                                        android:textColor="#FF5252"
+                                        android:textColor="#D32F2F"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -520,7 +532,9 @@
                                         android:valueTo="40"
                                         android:value="30"
                                         android:stepSize="1"
-                                        app:labelBehavior="withinBounds" />
+                                        app:labelBehavior="withinBounds"
+                                        app:thumbColor="#388E3C"
+                                        app:trackColorActive="#388E3C" />
 
                                     <TextView
                                         android:id="@+id/tvRsiOversold"
@@ -528,7 +542,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="30"
                                         android:textStyle="bold"
-                                        android:textColor="#00C851"
+                                        android:textColor="#388E3C"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -562,7 +576,9 @@
                                         android:valueFrom="5"
                                         android:valueTo="30"
                                         android:value="12"
-                                        android:stepSize="1" />
+                                        android:stepSize="1"
+                                        app:thumbColor="#00897B"
+                                        app:trackColorActive="#00897B" />
 
                                     <TextView
                                         android:id="@+id/tvMacdFast"
@@ -570,7 +586,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="12"
                                         android:textStyle="bold"
-                                        android:textColor="#00BFA5"
+                                        android:textColor="#00897B"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -596,7 +612,9 @@
                                         android:valueFrom="20"
                                         android:valueTo="60"
                                         android:value="26"
-                                        android:stepSize="1" />
+                                        android:stepSize="1"
+                                        app:thumbColor="#0069C0"
+                                        app:trackColorActive="#0069C0" />
 
                                     <TextView
                                         android:id="@+id/tvMacdSlow"
@@ -604,7 +622,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="26"
                                         android:textStyle="bold"
-                                        android:textColor="#007BFF"
+                                        android:textColor="#0069C0"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -630,7 +648,9 @@
                                         android:valueFrom="5"
                                         android:valueTo="20"
                                         android:value="9"
-                                        android:stepSize="1" />
+                                        android:stepSize="1"
+                                        app:thumbColor="#388E3C"
+                                        app:trackColorActive="#388E3C" />
 
                                     <TextView
                                         android:id="@+id/tvMacdSignal"
@@ -638,7 +658,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="9"
                                         android:textStyle="bold"
-                                        android:textColor="#00C851"
+                                        android:textColor="#388E3C"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -672,7 +692,9 @@
                                         android:valueFrom="0.5"
                                         android:valueTo="2"
                                         android:value="1"
-                                        android:stepSize="0.1" />
+                                        android:stepSize="0.1"
+                                        app:thumbColor="#00897B"
+                                        app:trackColorActive="#00897B" />
 
                                     <TextView
                                         android:id="@+id/tvMeanReversionThreshold"
@@ -680,7 +702,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="1"
                                         android:textStyle="bold"
-                                        android:textColor="#00BFA5"
+                                        android:textColor="#00897B"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -706,7 +728,9 @@
                                         android:valueFrom="5"
                                         android:valueTo="30"
                                         android:value="14"
-                                        android:stepSize="1" />
+                                        android:stepSize="1"
+                                        app:thumbColor="#0069C0"
+                                        app:trackColorActive="#0069C0" />
 
                                     <TextView
                                         android:id="@+id/tvMeanReversionPeriod"
@@ -714,7 +738,7 @@
                                         android:layout_height="wrap_content"
                                         android:text="14"
                                         android:textStyle="bold"
-                                        android:textColor="#007BFF"
+                                        android:textColor="#0069C0"
                                         android:minWidth="40dp"
                                         android:gravity="center" />
                                 </LinearLayout>
@@ -729,14 +753,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="16dp">
+                app:cardElevation="6dp"
+                android:layout_marginBottom="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -745,21 +769,29 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="16dp" />
 
                     <com.google.android.material.chip.ChipGroup
                         android:id="@+id/chipGroupTimeframe"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:singleSelection="true"
-                        app:selectionRequired="true">
+                        app:selectionRequired="true"
+                        app:chipSpacingHorizontal="8dp"
+                        app:chipSpacingVertical="8dp">
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip30Days"
                             style="@style/Widget.Material3.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="30 Days" />
+                            android:text="30 Days"
+                            app:chipCornerRadius="8dp"
+                            app:chipSurfaceColor="#FFFFFF"
+                            app:chipStrokeColor="#E2E8F0"
+                            app:chipStrokeWidth="1dp"
+                            android:textColor="#475569"
+                            app:checkedIconVisible="false" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip90Days"
@@ -767,21 +799,39 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="90 Days"
-                            android:checked="true" />
+                            android:checked="true"
+                            app:chipCornerRadius="8dp"
+                            app:chipSurfaceColor="#FFFFFF"
+                            app:chipStrokeColor="#00897B"
+                            app:chipStrokeWidth="1dp"
+                            android:textColor="#00897B"
+                            app:checkedIconVisible="false" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip180Days"
                             style="@style/Widget.Material3.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="180 Days" />
+                            android:text="180 Days"
+                            app:chipCornerRadius="8dp"
+                            app:chipSurfaceColor="#FFFFFF"
+                            app:chipStrokeColor="#E2E8F0"
+                            app:chipStrokeWidth="1dp"
+                            android:textColor="#475569"
+                            app:checkedIconVisible="false" />
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chip365Days"
                             style="@style/Widget.Material3.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1 Year" />
+                            android:text="1 Year"
+                            app:chipCornerRadius="8dp"
+                            app:chipSurfaceColor="#FFFFFF"
+                            app:chipStrokeColor="#E2E8F0"
+                            app:chipStrokeWidth="1dp"
+                            android:textColor="#475569"
+                            app:checkedIconVisible="false" />
                     </com.google.android.material.chip.ChipGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -792,15 +842,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="16dp"
+                app:cardElevation="6dp"
+                android:layout_marginBottom="20dp"
                 android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -809,7 +859,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="16dp" />
 
                     <com.github.mikephil.charting.charts.LineChart
                         android:id="@+id/equityChart"
@@ -833,7 +883,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#1E293B"
-                    android:layout_marginBottom="12dp" />
+                    android:layout_marginBottom="16dp" />
 
                 <!-- QuantScore Card -->
                 <com.google.android.material.card.MaterialCardView
@@ -841,8 +891,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
-                    android:layout_marginBottom="16dp">
+                    app:cardElevation="8dp"
+                    android:layout_marginBottom="20dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -886,16 +936,17 @@
                     android:layout_height="wrap_content"
                     android:columnCount="2"
                     android:rowCount="3"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="20dp"
+                    android:useDefaultMargins="true">
 
                     <!-- Total Return -->
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -907,7 +958,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="💰 Total Return"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -915,10 +966,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -927,9 +978,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -941,7 +992,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="📊 Sharpe Ratio"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -949,10 +1000,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -961,9 +1012,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -975,7 +1026,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="📉 Max Drawdown"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -983,10 +1034,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -995,9 +1046,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1009,7 +1060,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="📊 Volatility"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -1017,10 +1068,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1029,9 +1080,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1043,7 +1094,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="🎯 Win Rate"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -1051,10 +1102,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -1063,9 +1114,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_margin="4dp"
+                        android:layout_rowWeight="1"
                         app:cardCornerRadius="12dp"
-                        app:cardElevation="3dp">
+                        app:cardElevation="4dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -1077,7 +1128,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="📈 Total Trades"
-                                android:textSize="12sp"
+                                android:textSize="13sp"
                                 android:textColor="#64748B" />
 
                             <TextView
@@ -1085,10 +1136,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="--"
-                                android:textSize="20sp"
+                                android:textSize="22sp"
                                 android:textStyle="bold"
                                 android:textColor="#1E293B"
-                                android:layout_marginTop="4dp" />
+                                android:layout_marginTop="6dp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
                 </GridLayout>
@@ -1100,15 +1151,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="16dp"
-                app:cardElevation="4dp"
-                android:layout_marginBottom="16dp"
+                app:cardElevation="6dp"
+                android:layout_marginBottom="20dp"
                 android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="24dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -1117,7 +1168,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textColor="#1E293B"
-                        android:layout_marginBottom="12dp" />
+                        android:layout_marginBottom="16dp" />
 
                     <TextView
                         android:id="@+id/tvAiInsights"
@@ -1143,12 +1194,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="24dp"
         android:text="🚀 Run Backtest"
         android:textColor="@android:color/white"
         app:icon="@android:drawable/ic_media_play"
         app:iconTint="@android:color/white"
-        app:backgroundTint="#00BFA5" />
+        app:backgroundTint="#00897B" />
 
     <!-- Progress Overlay -->
     <FrameLayout
@@ -1157,6 +1208,7 @@
         android:layout_height="match_parent"
         android:background="#80000000"
         android:clickable="true"
+        android:focusable="true"
         android:visibility="gone">
 
         <com.google.android.material.card.MaterialCardView
@@ -1176,7 +1228,7 @@
                 <ProgressBar
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:indeterminateTint="#00BFA5" />
+                    android:indeterminateTint="#00897B" />
 
                 <TextView
                     android:id="@+id/tvProgressText"
