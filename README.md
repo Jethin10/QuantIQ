@@ -22,7 +22,7 @@
 **QuantIQ** is a mobile-first trading strategy backtesting platform that brings institutional-grade
 quantitative analysis to your pocket. Unlike traditional backtesting tools that require desktop
 computers and cloud services, QuantIQ runs entirely on your Android device with a powerful on-device
-AI assistant.
+AI assistant  by integrating the Runanywhere sdk.
 
 ### **The Problem We Solve**
 
@@ -229,7 +229,15 @@ QuantScore = (0.35 × Return Score) +
 
 ## 🌟 **Screenshots**
 
-<omitted - add your actual screenshots here>
+![Loading Page](https://github.com/user-attachments/assets/1b42f86c-69fa-4f9d-bb82-54127d56e26a)
+![Selecting Stocks and Parameters](https://github.com/user-attachments/assets/9895908e-a307-4367-8825-0991b91a906b)
+![Selecting Strategies](https://github.com/user-attachments/assets/7158447b-3c18-441b-ade0-338bef1c9f97)
+![Quant Score](https://github.com/user-attachments/assets/17b50bd2-9fe3-498e-b421-0a62cef30d9d)
+![Performance metrics and valuation graph](https://github.com/user-attachments/assets/0510f74c-c920-4a76-a867-2cb5a0cf9e53)
+![QuantIQ Ai](https://github.com/user-attachments/assets/c379b6f0-2377-4ce7-9052-c59c4c32232f)
+![Selecting stock and parameters](https://github.com/user-attachments/assets/5ab4df02-f2e1-4f9c-b11f-70255923919f)
+![Backtesting Settings](https://github.com/user-attachments/assets/367b5bee-52c6-4df2-bdeb-528b300201d5)
+
 
 ---
 
@@ -445,10 +453,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👥 **Team**
 
-Created with ❤️ for [Your Hackathon Name] by [Your Name]
+Created with ❤️ for [Tech Jam 2.0 & Runanywhere] by [Quantum Loop]
 
-**Developer:** [Your Name]  
-**GitHub:** [@YourGitHubUsername](https://github.com/YourGitHubUsername)  
+**Developer:** [Jethin]  
+**GitHub:** [@YourGitHubUsername](https://github.com/Jethin10)  
 **Repository:
 ** [https://github.com/YourGitHubUsername/QuantIQ](https://github.com/YourGitHubUsername/QuantIQ)
 
@@ -469,8 +477,8 @@ Created with ❤️ for [Your Hackathon Name] by [Your Name]
 Questions? Feedback? Reach out:
 
 - **GitHub Issues
-  **: [Report bugs or suggest features](https://github.com/YourGitHubUsername/QuantIQ/issues)
-- **Email**: [Your Email]
+  **: [Report bugs or suggest features](https://github.com/Jethin10/QuantIQ/issues)
+- **Email**: [jethinkosaraju10@gmail.com]
 
 ---
 
