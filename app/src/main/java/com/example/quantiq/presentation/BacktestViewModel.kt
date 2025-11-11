@@ -2,7 +2,7 @@ package com.example.quantiq.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.quantiq.data.api.YahooFinanceService
+import com.example.quantiq.data.repository.StockRepository
 import com.example.quantiq.data.models.BacktestResult
 import com.example.quantiq.data.models.Strategy
 import com.example.quantiq.domain.BacktestEngine
@@ -16,7 +16,7 @@ import androidx.lifecycle.AndroidViewModel
 
 class BacktestViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val yahooFinanceService = YahooFinanceService.getInstance()
+    private val stockRepository = StockRepository.getInstance()
     private val backtestEngine = BacktestEngine()
 
     private val _uiState = MutableStateFlow<BacktestUiState>(BacktestUiState.Idle)
@@ -30,8 +30,17 @@ class BacktestViewModel(application: Application) : AndroidViewModel(application
             try {
                 _uiState.value = BacktestUiState.Loading("Fetching stock data for $ticker...")
 
-                // Fetch stock data
-                val stockData = yahooFinanceService.getHistoricalData(ticker, days)
+                // Fetch stock data using repository (with automatic fallback)
+                val result = stockRepository.getHistoricalData(ticker, days)
+
+                if (result.isFailure) {
+                    _uiState.value = BacktestUiState.Error(
+                        result.exceptionOrNull()?.message ?: "Failed to fetch data"
+                    )
+                    return@launch
+                }
+
+                val stockData = result.getOrNull() ?: emptyList()
 
                 if (stockData.isEmpty()) {
                     _uiState.value = BacktestUiState.Error("No data found for $ticker")
@@ -64,16 +73,16 @@ class BacktestViewModel(application: Application) : AndroidViewModel(application
                 }
 
                 // Run backtest
-                val result = backtestEngine.runBacktest(
+                val backtestResult = backtestEngine.runBacktest(
                     stockData = stockData,
                     strategy = strategy,
                     ticker = ticker
                 )
 
                 // Save context for AI chat
-                saveBacktestContext(result)
+                saveBacktestContext(backtestResult)
 
-                _uiState.value = BacktestUiState.Success(result)
+                _uiState.value = BacktestUiState.Success(backtestResult)
 
             } catch (e: Exception) {
                 _uiState.value = BacktestUiState.Error("Error: ${e.message}")
