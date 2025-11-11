@@ -39,7 +39,7 @@
         <activity
             android:name=".ChatActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".MainActivity" />
     </application>
 </manifest>

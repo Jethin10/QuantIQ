@@ -10,8 +10,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 
-class BacktestViewModel : ViewModel() {
+class BacktestViewModel(application: Application) : AndroidViewModel(application) {
 
     private val yahooFinanceService = YahooFinanceService.getInstance()
     private val backtestEngine = BacktestEngine()
@@ -67,11 +70,36 @@ class BacktestViewModel : ViewModel() {
                     ticker = ticker
                 )
 
+                // Save context for AI chat
+                saveBacktestContext(result)
+
                 _uiState.value = BacktestUiState.Success(result)
 
             } catch (e: Exception) {
                 _uiState.value = BacktestUiState.Error("Error: ${e.message}")
             }
+        }
+    }
+
+    /**
+     * Save backtest context to shared preferences for AI chat access
+     */
+    private fun saveBacktestContext(result: BacktestResult) {
+        val prefs = getApplication<Application>()
+            .getSharedPreferences("quantiq_backtest_cache", Context.MODE_PRIVATE)
+
+        prefs.edit().apply {
+            putString("last_ticker", result.ticker)
+            putString("last_strategy", result.strategy)
+            putFloat("last_total_return", result.totalReturn.toFloat())
+            putFloat("last_sharpe_ratio", result.sharpeRatio.toFloat())
+            putFloat("last_max_drawdown", result.maxDrawdown.toFloat())
+            putFloat("last_win_rate", result.winRate.toFloat())
+            putFloat("last_volatility", result.volatility.toFloat())
+            putInt("last_total_trades", result.totalTrades)
+            putFloat("last_quant_score", result.quantScore.toFloat())
+            putLong("last_timestamp", System.currentTimeMillis())
+            apply()
         }
     }
 }

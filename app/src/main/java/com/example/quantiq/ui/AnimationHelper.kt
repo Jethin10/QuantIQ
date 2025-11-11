@@ -2,10 +2,13 @@ package com.example.quantiq.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
+import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 
 /**
@@ -175,6 +178,76 @@ object AnimationHelper {
                     }
                     .start()
             }
+            .start()
+    }
+
+    /**
+     * Animate a list of cards with staggered timing
+     */
+    fun animateCardsStaggered(cards: List<View>, delayBetween: Long = 100L) {
+        cards.forEachIndexed { index, card ->
+            card.alpha = 0f
+            card.translationY = 50f
+            card.isVisible = true
+
+            card.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(400)
+                .setStartDelay(index * delayBetween)
+                .setInterpolator(OvershootInterpolator(0.8f))
+                .start()
+        }
+    }
+
+    /**
+     * Animate QuantScore card based on score value
+     */
+    fun animateQuantScore(card: View, scoreView: View, score: Double) {
+        // Fade in
+        card.alpha = 0f
+        card.scaleX = 0.8f
+        card.scaleY = 0.8f
+        card.isVisible = true
+
+        card.animate()
+            .alpha(1f)
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(600)
+            .setInterpolator(OvershootInterpolator(1.2f))
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    // Add pulse if score is excellent
+                    if (score >= 80) {
+                        pulse(scoreView, 3)  // Pulse 3 times
+                    }
+                }
+            })
+            .start()
+    }
+
+    /**
+     * Scale down animation for button press
+     */
+    fun scaleDown(view: View) {
+        view.animate()
+            .scaleX(0.95f)
+            .scaleY(0.95f)
+            .setDuration(100)
+            .setInterpolator(DecelerateInterpolator())
+            .start()
+    }
+
+    /**
+     * Scale up animation for button release
+     */
+    fun scaleUp(view: View) {
+        view.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(100)
+            .setInterpolator(AccelerateDecelerateInterpolator())
             .start()
     }
 }
