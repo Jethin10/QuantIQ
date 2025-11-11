@@ -1,17 +1,19 @@
 package com.example.quantiq.data.repository
 
 import com.example.quantiq.data.api.YahooFinanceService
+import com.example.quantiq.data.api.AlphaVantageService
 import com.example.quantiq.data.models.StockData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Repository for managing stock data with caching
+ * Repository for managing stock data with caching and automatic API fallback
  */
 class StockRepository private constructor() {
 
     private val yahooFinanceService = YahooFinanceService.getInstance()
+    private val alphaVantageService = AlphaVantageService.getInstance()
     private val cache = ConcurrentHashMap<String, CachedData>()
 
     data class CachedData(
@@ -21,7 +23,8 @@ class StockRepository private constructor() {
     )
 
     /**
-     * Get historical stock data with caching
+     * Get historical stock data with caching and automatic fallback
+     * Tries Yahoo Finance first, falls back to Alpha Vantage if it fails
      */
     suspend fun getHistoricalData(
         ticker: String,
@@ -39,19 +42,42 @@ class StockRepository private constructor() {
                 return@withContext Result.success(cached.data)
             }
 
-            // Fetch fresh data
-            val data = yahooFinanceService.getHistoricalData(ticker, days)
+            // Try Yahoo Finance first
+            var data: List<StockData>? = null
+            var lastError: Exception? = null
 
-            if (data.isEmpty()) {
+            try {
+                data = yahooFinanceService.getHistoricalData(ticker, days)
+                if (data.isNotEmpty()) {
+                    // Cache the data
+                    cache[cacheKey] = CachedData(data, System.currentTimeMillis(), days)
+                    return@withContext Result.success(data)
+                }
+            } catch (e: Exception) {
+                lastError = e
+                // Yahoo Finance failed, try Alpha Vantage
+            }
+
+            // Fallback to Alpha Vantage
+            try {
+                data = alphaVantageService.getHistoricalData(ticker, days)
+                if (data.isNotEmpty()) {
+                    // Cache the data
+                    cache[cacheKey] = CachedData(data, System.currentTimeMillis(), days)
+                    return@withContext Result.success(data)
+                }
+            } catch (e: Exception) {
+                // Both APIs failed
                 return@withContext Result.failure(
-                    Exception("No data available for $ticker. Please check the ticker symbol.")
+                    Exception("Failed to fetch data from both Yahoo Finance and Alpha Vantage for $ticker. ${lastError?.message ?: e.message}")
                 )
             }
 
-            // Cache the data
-            cache[cacheKey] = CachedData(data, System.currentTimeMillis(), days)
+            // No data available
+            return@withContext Result.failure(
+                Exception("No data available for $ticker. Please check the ticker symbol.")
+            )
 
-            Result.success(data)
         } catch (e: Exception) {
             Result.failure(
                 Exception("Failed to fetch data for $ticker: ${e.message}", e)
@@ -64,7 +90,16 @@ class StockRepository private constructor() {
      */
     suspend fun validateTicker(ticker: String): Boolean = withContext(Dispatchers.IO) {
         try {
-            val data = yahooFinanceService.getHistoricalData(ticker, 5)
+            // Try Yahoo first
+            try {
+                val data = yahooFinanceService.getHistoricalData(ticker, 5)
+                if (data.isNotEmpty()) return@withContext true
+            } catch (e: Exception) {
+                // Try Alpha Vantage as fallback
+            }
+
+            // Try Alpha Vantage
+            val data = alphaVantageService.getHistoricalData(ticker, 5)
             data.isNotEmpty()
         } catch (e: Exception) {
             false
