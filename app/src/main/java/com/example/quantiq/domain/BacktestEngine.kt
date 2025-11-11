@@ -26,6 +26,13 @@ class BacktestEngine(
     ): BacktestResult {
         val prices = stockData.map { it.close }
 
+        // Calculate buy-and-hold return for benchmark
+        val buyAndHoldReturn = if (prices.isNotEmpty()) {
+            ((prices.last() - prices.first()) / prices.first()) * 100
+        } else {
+            0.0
+        }
+
         // Calculate technical indicators based on strategy
         val signals = when (strategy.name) {
             "SMA Crossover" -> generateSMACrossoverSignals(prices, strategy)
@@ -50,6 +57,9 @@ class BacktestEngine(
             initialCapital = initialCapital
         )
 
+        // Calculate alpha (excess return over buy-and-hold)
+        val alphaVsBuyAndHold = metrics.totalReturn - buyAndHoldReturn
+
         return BacktestResult(
             strategy = strategy.name,
             ticker = ticker,
@@ -62,7 +72,9 @@ class BacktestEngine(
             totalTrades = trades.size,
             quantScore = calculateQuantScore(metrics),
             equityCurve = equityCurve,
-            trades = trades
+            trades = trades,
+            buyAndHoldReturn = buyAndHoldReturn,
+            alphaVsBuyAndHold = alphaVsBuyAndHold
         )
     }
 

@@ -30,7 +30,9 @@ data class BacktestResult(
     val totalTrades: Int,
     val quantScore: Double,
     val equityCurve: List<Double>,
-    val trades: List<Trade>
+    val trades: List<Trade>,
+    val buyAndHoldReturn: Double = 0.0,
+    val alphaVsBuyAndHold: Double = 0.0
 )
 
 data class Trade(
