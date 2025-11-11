@@ -1,17 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.QuantIQ" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">#00BFA5</item>
-        <item name="colorPrimaryVariant">#007BFF</item>
+        <!-- Updated to match professional teal theme -->
+        <item name="colorPrimary">#00796B</item>
+        <item name="colorPrimaryVariant">#004D40</item>
         <item name="colorOnPrimary">@android:color/white</item>
 
-        <item name="colorSecondary">#8A2BE2</item>
-        <item name="colorSecondaryVariant">#6A1BB2</item>
+        <item name="colorSecondary">#00695C</item>
+        <item name="colorSecondaryVariant">#004D40</item>
         <item name="colorOnSecondary">@android:color/white</item>
 
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/white</item>
+
+        <!-- Modern typography -->
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
     </style>
 
     <style name="Theme.QuantIQ" parent="Base.Theme.QuantIQ" />
@@ -20,7 +24,7 @@
     <style name="Theme.QuantIQ.Splash" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/gradient_header</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">#8A2BE2</item>
+        <item name="android:navigationBarColor">#004D40</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
@@ -28,5 +32,29 @@
     <style name="ToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">22sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Professional Toolbar Styles -->
+    <style name="ToolbarTitleProfessional" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="ToolbarSubtitleProfessional" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <!-- Professional Button Style -->
+    <style name="ProfessionalButton" parent="Widget.Material3.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="elevation">8dp</item>
     </style>
 </resources>

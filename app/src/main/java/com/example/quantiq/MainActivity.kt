@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.radiobutton.MaterialRadioButton
 import com.google.android.material.slider.Slider
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvMeanReversionPeriod: TextView
 
     private lateinit var chipGroupTimeframe: ChipGroup
-    private lateinit var fabRunBacktest: ExtendedFloatingActionButton
+    private lateinit var fabRunBacktest: com.google.android.material.button.MaterialButton
     private lateinit var progressOverlay: FrameLayout
     private lateinit var tvProgressText: TextView
     private lateinit var tvModelStatus: TextView
@@ -416,6 +417,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        fabRunBacktest.setOnTouchListener { view, event ->
+            when (event.action) {
+                android.view.MotionEvent.ACTION_DOWN -> {
+                    view.animate()
+                        .scaleX(0.95f)
+                        .scaleY(0.95f)
+                        .setDuration(100)
+                        .start()
+                }
+
+                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                    view.animate()
+                        .scaleX(1f)
+                        .scaleY(1f)
+                        .setDuration(100)
+                        .start()
+                }
+            }
+            false
+        }
+
         fabRunBacktest.setOnClickListener {
             runBacktest()
         }
@@ -666,11 +688,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayBacktestResults(result: BacktestResult) {
-        // Show containers
+        // Animate showing containers with fade in and slide up
+        metricsContainer.alpha = 0f
+        metricsContainer.translationY = 50f
         metricsContainer.visibility = View.VISIBLE
-        chartCard.visibility = View.VISIBLE
+        metricsContainer.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(400)
+            .setInterpolator(android.view.animation.DecelerateInterpolator())
+            .start()
 
-        // Update QuantScore
+        chartCard.alpha = 0f
+        chartCard.translationY = 50f
+        chartCard.visibility = View.VISIBLE
+        chartCard.animate()
+            .alpha(1f)
+            .translationY(0f)
+            .setDuration(400)
+            .setStartDelay(100)
+            .setInterpolator(android.view.animation.DecelerateInterpolator())
+            .start()
+
+        // Update QuantScore with animation
         tvQuantScore.text = String.format("%.0f", result.quantScore)
         val rating = when {
             result.quantScore >= 80 -> "EXCELLENT "
@@ -679,6 +719,17 @@ class MainActivity : AppCompatActivity() {
             else -> "POOR "
         }
         tvQuantRating.text = rating
+
+        // Animate QuantScore card scale
+        quantScoreCard.scaleX = 0.9f
+        quantScoreCard.scaleY = 0.9f
+        quantScoreCard.animate()
+            .scaleX(1f)
+            .scaleY(1f)
+            .setDuration(300)
+            .setStartDelay(200)
+            .setInterpolator(android.view.animation.OvershootInterpolator(1.5f))
+            .start()
 
         // Update metrics with colors
         tvTotalReturn.text = FormatUtils.formatReturn(result.totalReturn)
@@ -690,7 +741,7 @@ class MainActivity : AppCompatActivity() {
         tvWinRate.text = String.format("%.1f%%", result.winRate)
         tvTrades.text = result.totalTrades.toString()
 
-        // Draw chart
+        // Draw chart with animation
         drawEquityCurve(result.equityCurve)
 
         // Don't auto-generate AI insights - only show when user clicks on a metric card
@@ -759,7 +810,16 @@ class MainActivity : AppCompatActivity() {
         val result = lastBacktestResult ?: return
 
         lifecycleScope.launch {
+            aiInsightsCard.alpha = 0f
+            aiInsightsCard.translationY = 30f
             aiInsightsCard.visibility = View.VISIBLE
+            aiInsightsCard.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(300)
+                .setInterpolator(android.view.animation.DecelerateInterpolator())
+                .start()
+
             tvAiInsights.text = "AI is analyzing $metricName..."
 
             val metricValue = when (metricName) {
