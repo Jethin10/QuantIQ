@@ -139,6 +139,11 @@ class MainActivity : AppCompatActivity() {
         "ZM" to "Zoom Video Communications"
     )
 
+    // Reverse mapping for company name → ticker
+    private val companyToTicker = stockSuggestions.entries.associate { (ticker, company) ->
+        company.lowercase() to ticker
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -273,25 +278,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupStockAutocomplete() {
-        val tickers = stockSuggestions.keys.toTypedArray()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, tickers)
+        // Create combined list of tickers and company names for suggestions
+        val allSuggestions = stockSuggestions.keys.toList() + stockSuggestions.values.toList()
+        val adapter =
+            ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, allSuggestions)
         etStockTicker.setAdapter(adapter)
         etStockTicker.threshold = 1
 
-        // Add focus animation to the input
+        // Add subtle focus animation to the input
         etStockTicker.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 stockInputLayout.animate()
-                    .scaleX(1.02f)
-                    .scaleY(1.02f)
-                    .setDuration(200)
+                    .scaleX(1.01f)
+                    .scaleY(1.01f)
+                    .setDuration(250)
                     .setInterpolator(android.view.animation.DecelerateInterpolator())
                     .start()
             } else {
                 stockInputLayout.animate()
                     .scaleX(1f)
                     .scaleY(1f)
-                    .setDuration(200)
+                    .setDuration(250)
                     .setInterpolator(android.view.animation.DecelerateInterpolator())
                     .start()
             }
@@ -300,29 +307,41 @@ class MainActivity : AppCompatActivity() {
         etStockTicker.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val ticker = s.toString().uppercase()
-                val companyName = stockSuggestions[ticker]
+                val input = s.toString().trim()
+
+                // Try to find ticker or company name
+                val ticker = findTicker(input)
+                val companyName = if (ticker != null) stockSuggestions[ticker] else null
+
                 if (companyName != null) {
+                    // Update the text to show the ticker if user typed company name
+                    if (ticker != input.uppercase()) {
+                        etStockTicker.removeTextChangedListener(this)
+                        etStockTicker.setText(ticker)
+                        etStockTicker.setSelection(ticker?.length ?: 0)
+                        etStockTicker.addTextChangedListener(this)
+                    }
+
                     tvStockName.text = companyName
 
-                    // Animate company name container appearing
+                    // Subtle fade-in animation for company name
                     if (companyNameContainer.visibility != View.VISIBLE) {
                         companyNameContainer.alpha = 0f
-                        companyNameContainer.translationY = -20f
+                        companyNameContainer.translationY = -10f
                         companyNameContainer.visibility = View.VISIBLE
                         companyNameContainer.animate()
                             .alpha(1f)
                             .translationY(0f)
-                            .setDuration(300)
+                            .setDuration(250)
                             .setInterpolator(android.view.animation.DecelerateInterpolator())
                             .start()
                     }
                 } else {
-                    // Animate company name container disappearing
+                    // Subtle fade-out animation
                     if (companyNameContainer.visibility == View.VISIBLE) {
                         companyNameContainer.animate()
                             .alpha(0f)
-                            .translationY(-20f)
+                            .translationY(-10f)
                             .setDuration(200)
                             .withEndAction {
                                 companyNameContainer.visibility = View.GONE
@@ -334,6 +353,33 @@ class MainActivity : AppCompatActivity() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    // Helper function to find ticker from company name or ticker
+    private fun findTicker(input: String): String? {
+        if (input.isEmpty()) return null
+
+        val upperInput = input.uppercase()
+
+        // Check if it's a direct ticker match
+        if (stockSuggestions.containsKey(upperInput)) {
+            return upperInput
+        }
+
+        // Check if it's a company name (fuzzy match)
+        val lowerInput = input.lowercase()
+
+        // Exact company name match
+        companyToTicker[lowerInput]?.let { return it }
+
+        // Partial match - check if input matches start of company name
+        companyToTicker.entries.find { (company, _) ->
+            company.startsWith(lowerInput) ||
+                    company.contains(lowerInput) ||
+                    company.split(" ").any { it.startsWith(lowerInput) }
+        }?.let { return it.value }
+
+        return null
     }
 
     private fun setupStrategyCustomization() {

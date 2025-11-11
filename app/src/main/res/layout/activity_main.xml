@@ -138,37 +138,37 @@
                 app:cardCornerRadius="16dp"
                 app:cardElevation="8dp"
                 app:strokeWidth="0dp"
-                app:cardBackgroundColor="#1E293B"
                 android:layout_marginBottom="24dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="28dp">
+                    android:padding="24dp"
+                    android:background="@drawable/gradient_header">
 
                     <!-- Title -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Asset Selection"
-                        android:textSize="26sp"
+                        android:text="Stock Selection"
+                        android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#FFD700"
+                        android:textColor="@android:color/white"
                         android:fontFamily="sans-serif-medium"
-                        android:letterSpacing="0.03"
-                        android:layout_marginBottom="6dp" />
+                        android:alpha="0.95"
+                        android:layout_marginBottom="4dp" />
 
                     <!-- Subtitle -->
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Enter ticker symbol"
-                        android:textSize="14sp"
-                        android:textColor="#94A3B8"
+                        android:text="Enter ticker or company name"
+                        android:textSize="13sp"
+                        android:textColor="@android:color/white"
                         android:fontFamily="sans-serif-light"
-                        android:letterSpacing="0.05"
-                        android:layout_marginBottom="24dp" />
+                        android:alpha="0.75"
+                        android:layout_marginBottom="20dp" />
 
                     <!-- Search Input -->
                     <com.google.android.material.textfield.TextInputLayout
@@ -176,17 +176,17 @@
                         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="AAPL"
-                        app:hintTextColor="#00796B"
-                        app:boxStrokeColor="#00796B"
+                        android:hint="AAPL or Apple"
+                        app:hintTextColor="@android:color/white"
+                        app:boxStrokeColor="@android:color/white"
                         app:boxStrokeWidth="2dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
                         app:boxCornerRadiusBottomStart="12dp"
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:endIconMode="clear_text"
-                        app:endIconTint="#00796B"
-                        app:cursorColor="#FFD700">
+                        app:endIconTint="@android:color/white"
+                        app:cursorColor="@android:color/white">
 
                         <AutoCompleteTextView
                             android:id="@+id/etStockTicker"
@@ -194,12 +194,11 @@
                             android:layout_height="wrap_content"
                             android:inputType="textCapCharacters"
                             android:maxLines="1"
-                            android:textSize="24sp"
+                            android:textSize="20sp"
                             android:textStyle="bold"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@android:color/white"
                             android:fontFamily="sans-serif-medium"
-                            android:letterSpacing="0.08"
-                            android:padding="18dp"
+                            android:padding="16dp"
                             android:background="@android:color/transparent" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,58 +207,29 @@
                         android:id="@+id/companyNameContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:paddingTop="16dp"
+                        android:gravity="center_vertical"
                         android:visibility="gone">
 
-                        <!-- Divider -->
+                        <!-- Status Indicator -->
                         <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#334155"
-                            android:layout_marginBottom="16dp" />
+                            android:layout_width="6dp"
+                            android:layout_height="6dp"
+                            android:background="@drawable/ic_status_dot"
+                            android:layout_marginEnd="10dp" />
 
-                        <!-- Company Info -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <!-- Company Details -->
+                        <TextView
+                            android:id="@+id/tvStockName"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center_vertical">
-
-                            <!-- Status Indicator -->
-                            <View
-                                android:layout_width="8dp"
-                                android:layout_height="8dp"
-                                android:background="@drawable/ic_status_dot"
-                                android:layout_marginEnd="12dp" />
-
-                            <!-- Company Details -->
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvStockName"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Apple Inc."
-                                    android:textSize="17sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#FFD700"
-                                    android:fontFamily="sans-serif-medium" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Valid • Ready"
-                                    android:textSize="13sp"
-                                    android:textColor="#00796B"
-                                    android:fontFamily="sans-serif"
-                                    android:layout_marginTop="2dp" />
-                            </LinearLayout>
-                        </LinearLayout>
+                            android:layout_weight="1"
+                            android:text="Apple Inc."
+                            android:textSize="15sp"
+                            android:textColor="@android:color/white"
+                            android:fontFamily="sans-serif"
+                            android:alpha="0.9" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
