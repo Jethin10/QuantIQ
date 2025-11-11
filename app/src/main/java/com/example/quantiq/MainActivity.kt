@@ -301,6 +301,24 @@ class MainActivity : AppCompatActivity() {
                     .setDuration(250)
                     .setInterpolator(android.view.animation.DecelerateInterpolator())
                     .start()
+
+                // When user finishes editing, convert to ticker if needed
+                val input = etStockTicker.text.toString().trim()
+                val ticker = findTicker(input)
+                if (ticker != null && ticker != input.uppercase()) {
+                    etStockTicker.setText(ticker)
+                }
+            }
+        }
+
+        // Handle item selection from dropdown
+        etStockTicker.setOnItemClickListener { parent, view, position, id ->
+            val selected = parent.getItemAtPosition(position) as String
+            val ticker = findTicker(selected)
+            if (ticker != null) {
+                etStockTicker.setText(ticker)
+                tvStockName.text = stockSuggestions[ticker]
+                showCompanyName()
             }
         }
 
@@ -309,50 +327,49 @@ class MainActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val input = s.toString().trim()
 
-                // Try to find ticker or company name
+                // Just show company name below, don't modify input
                 val ticker = findTicker(input)
                 val companyName = if (ticker != null) stockSuggestions[ticker] else null
 
                 if (companyName != null) {
-                    // Update the text to show the ticker if user typed company name
-                    if (ticker != input.uppercase()) {
-                        etStockTicker.removeTextChangedListener(this)
-                        etStockTicker.setText(ticker)
-                        etStockTicker.setSelection(ticker?.length ?: 0)
-                        etStockTicker.addTextChangedListener(this)
-                    }
-
                     tvStockName.text = companyName
-
-                    // Subtle fade-in animation for company name
-                    if (companyNameContainer.visibility != View.VISIBLE) {
-                        companyNameContainer.alpha = 0f
-                        companyNameContainer.translationY = -10f
-                        companyNameContainer.visibility = View.VISIBLE
-                        companyNameContainer.animate()
-                            .alpha(1f)
-                            .translationY(0f)
-                            .setDuration(250)
-                            .setInterpolator(android.view.animation.DecelerateInterpolator())
-                            .start()
-                    }
+                    showCompanyName()
                 } else {
-                    // Subtle fade-out animation
-                    if (companyNameContainer.visibility == View.VISIBLE) {
-                        companyNameContainer.animate()
-                            .alpha(0f)
-                            .translationY(-10f)
-                            .setDuration(200)
-                            .withEndAction {
-                                companyNameContainer.visibility = View.GONE
-                            }
-                            .start()
-                    }
+                    hideCompanyName()
                 }
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
+    }
+
+    private fun showCompanyName() {
+        // Subtle fade-in animation for company name
+        if (companyNameContainer.visibility != View.VISIBLE) {
+            companyNameContainer.alpha = 0f
+            companyNameContainer.translationY = -10f
+            companyNameContainer.visibility = View.VISIBLE
+            companyNameContainer.animate()
+                .alpha(1f)
+                .translationY(0f)
+                .setDuration(250)
+                .setInterpolator(android.view.animation.DecelerateInterpolator())
+                .start()
+        }
+    }
+
+    private fun hideCompanyName() {
+        // Subtle fade-out animation
+        if (companyNameContainer.visibility == View.VISIBLE) {
+            companyNameContainer.animate()
+                .alpha(0f)
+                .translationY(-10f)
+                .setDuration(200)
+                .withEndAction {
+                    companyNameContainer.visibility = View.GONE
+                }
+                .start()
+        }
     }
 
     // Helper function to find ticker from company name or ticker
