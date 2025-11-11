@@ -247,6 +247,11 @@ class MainActivity : AppCompatActivity() {
         // Check if model was loaded in splash
         isModelLoaded = intent.getBooleanExtra("modelLoaded", false)
         updateModelStatus()
+
+        // Enable smooth scrolling with nice easing
+        window.decorView.systemUiVisibility =
+            android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
+                    android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     }
 
     private fun updateModelStatus() {
@@ -417,6 +422,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
+        // Add touch animation to run button
         fabRunBacktest.setOnTouchListener { view, event ->
             when (event.action) {
                 android.view.MotionEvent.ACTION_DOWN -> {
@@ -444,6 +450,35 @@ class MainActivity : AppCompatActivity() {
 
         btnChat = findViewById(R.id.btnChat)
         btnSettings = findViewById(R.id.btnSettings)
+
+        // Add icon press animations
+        val iconAnimator: (ImageButton) -> Unit = { button ->
+            button.setOnTouchListener { view, event ->
+                when (event.action) {
+                    android.view.MotionEvent.ACTION_DOWN -> {
+                        view.animate()
+                            .scaleX(0.85f)
+                            .scaleY(0.85f)
+                            .alpha(0.7f)
+                            .setDuration(100)
+                            .start()
+                    }
+
+                    android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                        view.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .alpha(1f)
+                            .setDuration(100)
+                            .start()
+                    }
+                }
+                false
+            }
+        }
+
+        iconAnimator(btnChat)
+        iconAnimator(btnSettings)
 
         btnChat.setOnClickListener {
             if (!isModelLoaded) {
